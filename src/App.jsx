@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import {HashRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import {onAuthStateChanged} from 'firebase/auth';
 
 import {auth} from './firebase';
@@ -29,7 +29,7 @@ function App() {
 
     return (
         <Router>
-            <NavigationBar user={user} />
+            <NavigationBar user={user}/>
 
             <Container className={"mt-4"}>
                 <Routes>
