@@ -18,7 +18,6 @@ const Login = () => {
         const email = data.email;
         const password = data.password;
         const password_confirmation = data.password_confirmation;
-        const passwordRule = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
         if (!isLogin && (password !== password_confirmation)) {
             setError(<>
                 <p>Password does not match<br/></p>
