@@ -1,5 +1,6 @@
 const API_KEY = import.meta.env.VITE_SERP_API_KEY;
-const BASE_URL = '/api/search.json';
+// const BASE_URL = '/api/search.json';
+const BASE_URL = 'https://serpapi.com/search.json';
 
 export const fetchIceCreams = async (query = "gelato") => {
     try {
