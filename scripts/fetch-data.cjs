@@ -18,7 +18,12 @@ https.get(url, (res) => {
                 fs.mkdirSync('./public/data', {recursive: true});
             }
 
-            fs.writeFileSync('./public/data/products.json', JSON.stringify(results, null, 2));
+            const wrappedData = {
+                shopping_results: results,
+                updated_at: new Date().toISOString()
+            }
+
+            fs.writeFileSync('./public/data/products.json', JSON.stringify(wrappedData, null, 2));
             console.log("Successfully fetched and saved");
         } catch (e) {
             console.error("Error parsing JSON:", e.message);
