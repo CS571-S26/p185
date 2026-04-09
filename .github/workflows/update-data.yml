@@ -18,7 +18,7 @@ jobs:
           node-version: lts/*
 
       - name: Fetch Data from SerpApi
-        run: node scripts/fetch-data.js
+        run: node scripts/fetch-data.cjs
         env:
           SERP_API_KEY: ${{ secrets.SERP_API_KEY }}
 
