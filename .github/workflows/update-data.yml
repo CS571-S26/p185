@@ -1,0 +1,30 @@
+name: Update Product Data
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Fetch Data from SerpApi
+        run: node scripts/fetch-data.js
+        env:
+          SERP_API_KEY: ${{ secrets.SERP_API_KEY }}
+
+      - name: Commit and Push if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/products.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "data: update products.json via manual workflow" && git push)
