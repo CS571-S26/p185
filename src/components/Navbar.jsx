@@ -2,15 +2,18 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Container, Nav, Navbar} from "react-bootstrap";
 import AuthStatus from "./AuthStatus.jsx";
+import {GiIceCreamScoop} from "react-icons/gi";
+import {IoIceCream} from "react-icons/io5";
 
 const NavigationBar = ({user}) => {
     return (
         <Navbar bg={"light"} expand="lg" className={"shadow-sm mb-4"}>
-            <Container>
-                {/*ToDo: {replace emoji to image later}*/}
-                <Navbar.Brand as={Link} to={"/"} className={"fw-bold text-danger"}>🍦 iScoop</Navbar.Brand>
+            <Container fluid>
+                <Navbar.Brand as={Link} to={"/"} className={"fw-bold text-danger"}>
+                    <IoIceCream/><GiIceCreamScoop style={{transform: 'scaleX(-1)', marginRight: 15}}/>iScoop
+                </Navbar.Brand>
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">

@@ -31,7 +31,7 @@ function App() {
         <Router>
             <NavigationBar user={user}/>
 
-            <Container className={"mt-4"}>
+            <Container fluid className={""}>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/products" element={<Products/>}/>
