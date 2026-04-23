@@ -69,7 +69,7 @@ const Order = ({user}) => {
                         <Form.Group className="mb-3">
                             <Form.Label>Full Name</Form.Label>
                             <Form.Control name="name" required onChange={handleInputChange}
-                                          placeholder="DaeOck Kim"/>
+                                          placeholder="Badger"/>
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label>Address</Form.Label>
