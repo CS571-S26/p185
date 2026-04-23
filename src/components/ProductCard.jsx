@@ -1,12 +1,18 @@
 import React from 'react';
 import {Card, Button, Badge, Stack} from 'react-bootstrap';
 import {GiWrappedSweet} from "react-icons/gi";
+import {useCart} from "../contexts/CartContext.jsx";
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product, handleCartShow}) => {
     // ex: { id, name, brand, price, image, isGelato, flavorProfile: { sweetness, nuts } }
 
     const {name, brand, price, image, flavorProfile, promotions} = product;
     const sweetnessLevel = flavorProfile?.sweetness || 1;
+    const {addToCart} = useCart();
+    const handleAdd = (product) => {
+        addToCart(product);
+        handleCartShow();
+    }
 
     return (<Card className="h-100 border-0 shadow-sm product-card-hover">
         <div className="position-relative overflow-hidden">
@@ -52,7 +58,7 @@ const ProductCard = ({product}) => {
 
             <div className="mt-auto d-flex justify-content-between align-items-center">
                 <span className="fs-5 fw-bold text-dark">${price.toFixed(2)}</span>
-                <Button variant="danger" size="sm" className="fw-bold px-3">Add</Button>
+                <Button variant="danger" size="sm" className="fw-bold px-3" onClick={() => handleAdd(product)}>Add</Button>
             </div>
         </Card.Body>
     </Card>);

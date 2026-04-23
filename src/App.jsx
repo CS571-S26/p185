@@ -4,18 +4,20 @@ import {onAuthStateChanged} from 'firebase/auth';
 
 import {auth} from './firebase';
 import NavigationBar from './components/Navbar.jsx';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Products from './pages/Products';
 import './App.css'
 import {Container} from "react-bootstrap";
+import {CartProvider} from "./contexts/CartContext.jsx";
+import CartSidebar from "./components/CartSidebar.jsx";
+import Order from "./pages/Order.jsx";
+import OrderHistory from "./pages/OrderHistory.jsx";
 
 
 function App() {
     const [user, setUser] = useState(null);
-    // const [showCart, setShowCart] = useState(false);
+    const [showCart, setShowCart] = useState(false);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -24,28 +26,29 @@ function App() {
         return () => unsubscribe();
     }, []);
 
-    // const handleCartShow=() => setShowCart(true);
-    // const handleCartClose=() => setShowCart(false);
+    const handleCartShow=() => setShowCart(true);
+    const handleCartClose=() => setShowCart(false);
 
     return (
-        <Router>
-            <NavigationBar user={user}/>
-
-            <Container fluid className={""}>
-                <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/products" element={<Products/>}/>
-                    <Route path="/cart" element={<Cart/>}/>
-                    <Route path="/checkout" element={<Checkout user={user}/>}/>
-                    <Route path="/login" element={<Login/>}/>
-                </Routes>
-            </Container>
-            <aside className={"miniCartSidebar"}>
-                {
-                    // ToDo: <CartSidebar show={showCart} handleClose={handleCartClose}/>
-                }
-            </aside>
-        </Router>
+        <CartProvider>
+            <Router>
+                <NavigationBar user={user} handleCartShow={handleCartShow}/>
+                <Container fluid className={""}>
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/products" element={<Products handleCartShow={handleCartShow}/>}/>
+                        <Route path="/order" element={<Order user={user}/>} />
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/order-history" element={<OrderHistory user={user} />} />
+                    </Routes>
+                </Container>
+                <aside className={"miniCartSidebar"}>
+                    {
+                        <CartSidebar show={showCart} handleClose={handleCartClose} user={user}/>
+                    }
+                </aside>
+            </Router>
+        </CartProvider>
     );
 }
 
