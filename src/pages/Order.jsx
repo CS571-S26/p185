@@ -58,6 +58,10 @@ const Order = ({user}) => {
             style={{transform: 'scaleX(-1)'}}/></h3></Container>;
     }
 
+    if (!user) {
+        return <Container className="py-5 text-center"><h3>You have to be logged in to order</h3></Container>;
+    }
+
     return (<Container className="py-5">
         <h2 className="fw-bold mb-4">Checkout</h2>
         <Form onSubmit={handlePlaceOrder}>
