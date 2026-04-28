@@ -4,10 +4,11 @@ import {useCart} from '../contexts/CartContext';
 import {useNavigate} from 'react-router-dom';
 import {IoIceCream} from "react-icons/io5";
 import {GiIceCreamScoop} from "react-icons/gi";
+import PriceSummary from "../components/PriceSummary.jsx";
 
 const Order = ({user}) => {
     const {cartItems, calculateTotal, clearCart} = useCart();
-    const {subtotal, savings, shippingFee, total} = calculateTotal();
+    const summary = calculateTotal();
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -34,10 +35,10 @@ const Order = ({user}) => {
                 subtotal: (item.price * item.quantity).toFixed(2),
                 image: item.image
             })), summary: {
-                subtotal: subtotal,
-                savings: savings,
-                shippingFee: shippingFee,
-                totalAmount: total,
+                subtotal: summary.subtotal,
+                savings: summary.savings,
+                shippingFee: summary.shippingFee,
+                totalAmount: summary.total,
                 totalItems: cartItems.reduce((acc, item) => acc + item.quantity, 0)
             }, shippingInfo: {
                 name: formData.name, address: formData.address
@@ -125,18 +126,12 @@ const Order = ({user}) => {
                                 <div className="small fw-bold">${(item.price * item.quantity).toFixed(2)}</div>
                             </ListGroup.Item>))}
                         </ListGroup>
-
-                        <div className="d-flex justify-content-between mb-2">
-                            <span>Subtotal</span><span>${subtotal}</span></div>
-                        {parseFloat(savings) > 0 && <div className="d-flex justify-content-between mb-2 text-danger">
-                            <span>Savings</span><span>-${savings}</span></div>}
-                        <div className="d-flex justify-content-between mb-2">
-                            <span>Shipping</span><span>${shippingFee}</span></div>
-                        <hr/>
-                        <div className="d-flex justify-content-between fw-bold fs-4 mb-4">
-                            <span>Total</span><span>${total}</span></div>
-
-                        <Button type="submit" variant="danger" className="w-100 fw-bold py-3">Place Order</Button>
+                        <PriceSummary
+                            summary={summary}
+                            showButton={true}
+                            buttonText="Place Order"
+                            buttonType="submit"
+                        />
                     </Card>
                 </Col>
             </Row>
