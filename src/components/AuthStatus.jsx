@@ -18,28 +18,29 @@ const AuthStatus = ({user}) => {
     };
 
     return (user ? <>
-            <Nav className="align-items-center">
-                <Nav.Item className="me-3 text-muted">
-                    <small>{user.email}</small>
-                </Nav.Item>
-                <Button
-                    variant="outline-danger"
-                    size="sm"
-                    onClick={handleLogout}
-                    className="fw-bold"
-                >
-                    Logout
+        <Nav className="align-items-center">
+            <Nav.Item className="me-3 text-muted">
+                <small>{user.email}</small>
+            </Nav.Item>
+            <Button
+                variant="outline-danger"
+                size="sm"
+                onClick={handleLogout}
+                className="fw-bold"
+                style={{fontSize: "14pt"}}
+            >
+                Logout
+            </Button>
+        </Nav>
+    </> : <>
+        <Nav>
+            <Nav.Link as={Link} to="/login" className="p-0">
+                <Button variant="danger" size="sm" className="fw-bold" style={{fontSize: "14pt"}}>
+                    Login
                 </Button>
-            </Nav>
-        </> : <>
-            <Nav>
-                <Nav.Link as={Link} to="/login" className="p-0">
-                    <Button variant="danger" size="sm" className="fw-bold">
-                        Login
-                    </Button>
-                </Nav.Link>
-            </Nav>
-        </>)
+            </Nav.Link>
+        </Nav>
+    </>)
 };
 
 export default AuthStatus;

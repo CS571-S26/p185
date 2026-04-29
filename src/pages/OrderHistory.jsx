@@ -19,6 +19,8 @@ const OrderHistory = ({user}) => {
 
     if (orders.length === 0) {
         return (<Container className="py-5 text-center">
+            <h1 className="visually-hidden">Order History page</h1>
+            <h2 className="visually-hidden">No items to view</h2>
             <div className="text-muted mb-3"><BsBagCheck size={50}/></div>
             <h3>You haven't ordered anything yet</h3>
             <p>Scoop some ice cream in our store!</p>
@@ -28,7 +30,9 @@ const OrderHistory = ({user}) => {
     return (<Container className="py-5">
         <div className="d-flex align-items-center mb-4">
             <BsReceipt size={30} className="text-danger me-2"/>
+            <h1 className="visually-hidden">Order History page</h1>
             <h2 className="fw-bold m-0">My Order History</h2>
+
         </div>
 
         <Accordion defaultActiveKey="0" className="shadow-sm">

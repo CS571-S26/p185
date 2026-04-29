@@ -7,7 +7,7 @@ const OrderItem = ({order, eventKey}) => {
         <Accordion.Header>
             <div className="w-100 d-flex justify-content-between align-items-center pe-3">
                 <div>
-                    <span className="fw-bold text-danger me-2">{order.orderId}</span>
+                    <h3 className="fw-bold text-danger me-2">{order.orderId}</h3>
                     <small className="text-muted">
                         <BsCalendar3 size={14} className="me-1"/>
                         {new Date(order.orderDate).toLocaleDateString()}
@@ -21,13 +21,13 @@ const OrderItem = ({order, eventKey}) => {
         <Accordion.Body className="bg-white">
             <Row className="mb-3">
                 <Col sm={6}>
-                    <h6 className="fw-bold border-bottom pb-2">Shipping Details</h6>
+                    <h4 className="fw-bold border-bottom pb-2">Shipping Details</h4>
                     <p className="small mb-1"><strong>To:</strong> {order.shippingInfo.name}</p>
                     <p className="small mb-1"><strong>Address:</strong> {order.shippingInfo.address}</p>
                     <p className="small text-muted"><strong>Ordered by:</strong> {order.customer.email}</p>
                 </Col>
                 <Col sm={6}>
-                    <h6 className="fw-bold border-bottom pb-2">Order Summary</h6>
+                    <h4 className="fw-bold border-bottom pb-2">Order Summary</h4>
                     <div className="d-flex justify-content-between small">
                         <span>Subtotal:</span><span>${order.summary.subtotal}</span>
                     </div>
@@ -53,7 +53,7 @@ const OrderItem = ({order, eventKey}) => {
                 {order.items.map((item, idx) => (<tr key={idx}>
                     <td>
                         <div className="d-flex align-items-center">
-                            <Image src={item.image} width={40} height={40} rounded className="me-2"/>
+                            <Image alt={""} src={item.image} width={40} height={40} rounded className="me-2"/>
                             <span className="small fw-bold">{item.name}</span>
                         </div>
                     </td>

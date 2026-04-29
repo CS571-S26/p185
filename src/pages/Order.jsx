@@ -64,44 +64,48 @@ const Order = ({user}) => {
     }
 
     return (<Container className="py-5">
-        <h2 className="fw-bold mb-4">Checkout</h2>
+        <h1 className="visually-hidden">Checkout</h1>
+        <h2 className="visually-hidden">Checkout</h2>
+
+        <h3 className="fw-bold mb-4">Checkout</h3>
+
         <Form onSubmit={handlePlaceOrder}>
             <Row>
                 {/* Shipping, payment info */}
                 <Col md={7}>
                     <Card className="shadow-sm border-0 mb-4 p-3">
-                        <h5 className="fw-bold mb-3">Shipping Information</h5>
+                        <h4 className="fw-bold mb-3">Shipping Information</h4>
                         <Form.Group className="mb-3">
-                            <Form.Label>Full Name</Form.Label>
-                            <Form.Control name="name" required onChange={handleInputChange}
+                            <Form.Label htmlFor={"full-name-textfield"} column={"sm"}>Full Name</Form.Label>
+                            <Form.Control id={"full-name-textfield"} name="name" required onChange={handleInputChange}
                                           placeholder="Badger"/>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control name="address" required onChange={handleInputChange}
+                            <Form.Label htmlFor={"address-text-field"} column={"sm"}>Address</Form.Label>
+                            <Form.Control id={"address-text-field"} name="address" required onChange={handleInputChange}
                                           placeholder="1234 Madison St, WI"/>
                         </Form.Group>
                     </Card>
 
                     <Card className="shadow-sm border-0 p-3">
-                        <h5 className="fw-bold mb-3">Payment Method</h5>
+                        <h4 className="fw-bold mb-3">Payment Method</h4>
                         <Form.Group className="mb-3">
-                            <Form.Label>Card Number</Form.Label>
-                            <Form.Control name="cardNumber" required onChange={handleInputChange}
+                            <Form.Label htmlFor={"card-number-input"} column={"sm"}>Card Number</Form.Label>
+                            <Form.Control id={"card-number-input"} name="cardNumber" required onChange={handleInputChange}
                                           placeholder="0000-0000-0000-0000"/>
                         </Form.Group>
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Expiry</Form.Label>
-                                    <Form.Control name="expiry" required onChange={handleInputChange}
+                                    <Form.Label htmlFor={"expire-date"} column={"sm"}>Expiry</Form.Label>
+                                    <Form.Control id={"expire-date"} name="expiry" required onChange={handleInputChange}
                                                   placeholder="MM/YY"/>
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>CVC</Form.Label>
-                                    <Form.Control name="cvc" required onChange={handleInputChange}
+                                    <Form.Label htmlFor={"cvc"} column={"sm"}>CVC</Form.Label>
+                                    <Form.Control id={"cvc"} name="cvc" required onChange={handleInputChange}
                                                   placeholder="123"/>
                                 </Form.Group>
                             </Col>
@@ -112,12 +116,12 @@ const Order = ({user}) => {
                 {/* Order Summary */}
                 <Col md={5}>
                     <Card className="shadow-sm border-0 p-3 sticky-top" style={{top: '100px'}}>
-                        <h5 className="fw-bold mb-3">Order Summary</h5>
+                        <h4 className="fw-bold mb-3">Order Summary</h4>
                         <ListGroup variant="flush" className="mb-3">
                             {cartItems.map(item => (<ListGroup.Item key={item.id}
                                                                     className="px-0 d-flex justify-content-between align-items-center">
                                 <div className="d-flex align-items-center">
-                                    <Image src={item.image} width={50} height={50} rounded className="me-2"/>
+                                    <Image alt={""} src={item.image} width={50} height={50} rounded className="me-2"/>
                                     <div>
                                         <div className="small fw-bold">{item.name}</div>
                                         <div className="small text-muted">Qty: {item.quantity}</div>

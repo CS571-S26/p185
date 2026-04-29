@@ -28,6 +28,7 @@ const ProductCard = ({product, handleCartShow}) => {
             <Card.Img
                 variant="top"
                 src={image || "https://dummyimage.com/300x300&text=No+Image"}
+                alt={name}
                 className="p-3 rounded-5 img-fluid transition-transform"
                 style={{height: '250px', objectFit: 'contain'}}
             />
@@ -38,7 +39,7 @@ const ProductCard = ({product, handleCartShow}) => {
                 <Badge pill bg="light" text="dark" className="border">
                     {brand}
                 </Badge>
-                {flavorProfile?.isGelato && (<Badge pill bg="info" text="white">Gelato</Badge>)}
+                {flavorProfile?.isGelato && (<Badge pill bg="info" text="black">Gelato</Badge>)}
             </Stack>
 
             <Card.Title className="fs-6 fw-bold mb-1">{name}</Card.Title>
@@ -58,7 +59,8 @@ const ProductCard = ({product, handleCartShow}) => {
 
             <div className="mt-auto d-flex justify-content-between align-items-center">
                 <span className="fs-5 fw-bold text-dark">${price.toFixed(2)}</span>
-                <Button variant="danger" size="sm" className="fw-bold px-3" onClick={() => handleAdd(product)}>Add</Button>
+                <Button variant="danger" size="sm" className="fw-bold px-3"
+                        onClick={() => handleAdd(product)}>Add</Button>
             </div>
         </Card.Body>
     </Card>);

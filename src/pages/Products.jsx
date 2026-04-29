@@ -43,11 +43,13 @@ const Products = ({handleCartShow}) => {
     };
 
     if (loading) return (<div className={"text-center py-5"}>
+        <h1 className="visually-hidden">Products page</h1>
         <p className={"mb-5"}><strong>Loading Products...</strong></p>
         <SyncLoader style={{marginTop: 30}}/>
     </div>)
 
     return (<Container fluid className="px-4 py-4">
+        <h1 className="visually-hidden">Products page</h1>
         <Row>
             {/* Filters Section */}
             <Col md={3} lg={2} className="mb-4">
@@ -57,19 +59,23 @@ const Products = ({handleCartShow}) => {
                         <Form>
                             {/*By Brand/Type */}
                             <Form.Group className="mb-4">
-                                <Form.Label className="small fw-bold">Type</Form.Label>
+                                <legend className="small fw-bold col-form-label" style={{fontSize: '1rem'}}>Type
+                                </legend>
                                 <Form.Check
+                                    id={"gelato-check"}
                                     type="checkbox" label="Gelato"
                                     checked={filters.brands.includes("gelato")}
                                     onChange={() => handleBrandChange("gelato")}
                                     // onChange={(e) => setFilters({...filters, gelatoOnly: e.target.checked})}
                                 />
                                 <Form.Check
+                                    id={"haagen-dazs-check"}
                                     type="checkbox" label="Haagen-Dazs"
                                     checked={filters.brands.includes("Haagen")}
                                     onChange={() => handleBrandChange("Haagen")}
                                 />
                                 <Form.Check
+                                    id={"ben-n-jerrys-check"}
                                     type="checkbox" label="Ben & Jerry's"
                                     checked={filters.brands.includes("Ben")}
                                     onChange={() => handleBrandChange("Ben")}
@@ -78,8 +84,10 @@ const Products = ({handleCartShow}) => {
 
                             {/* Sweetness */}
                             <Form.Group className="mb-4">
-                                <Form.Label className="small fw-bold">Sweetness Level</Form.Label>
+                                <Form.Label className="small fw-bold" htmlFor={"sweetness-range"} column={"sm"}>Sweetness
+                                    Level</Form.Label>
                                 <Form.Range
+                                    id={"sweetness-range"}
                                     min={1} max={5}
                                     value={filters.maxSweetness}
                                     onChange={(e) => setFilters({...filters, maxSweetness: parseInt(e.target.value)})}
@@ -88,14 +96,17 @@ const Products = ({handleCartShow}) => {
 
                             {/* Others */}
                             <Form.Group className="mb-3">
-                                <Form.Label className="small fw-bold">Dietary</Form.Label>
+                                <legend className="small fw-bold col-form-label" style={{fontSize: '1rem'}}>Dietary
+                                </legend>
                                 <Form.Check
+                                    id={"nut-free-switch"}
                                     type="switch"
                                     label="Nut Free"
                                     checked={filters.nutFree}
                                     onChange={(e) => setFilters({...filters, nutFree: e.target.checked})}
                                 />
                                 <Form.Check
+                                    id={"dairy-free-switch"}
                                     type="switch"
                                     label="Dairy Free"
                                     checked={filters.dairyFree}
@@ -117,6 +128,7 @@ const Products = ({handleCartShow}) => {
             {/* Center product list area */}
             <Col md={9} lg={10}>
                 <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h2 className="visually-hidden">Products list</h2>
                     <h3 className="fw-bold">Explore Our Flavors</h3>
                     <span className="text-muted small">Showing {filteredProducts.length} products</span>
                 </div>
